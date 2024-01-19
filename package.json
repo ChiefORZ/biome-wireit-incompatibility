@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "next build",
-    "dev": "next dev",
-    "format": "biome check --apply .",
-    "lint": "next lint",
-    "start": "next start"
+    "build": "wireit",
+    "dev": "wireit",
+    "format": "wireit",
+    "lint": "wireit",
+    "start": "wireit"
   },
   "dependencies": {
     "next": "14.1.0",
@@ -21,6 +21,29 @@
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.1.0",
-    "typescript": "^5"
+    "typescript": "^5",
+    "wireit": "^0.14.3"
+  },
+  "wireit": {
+    "build": {
+      "command": "next build",
+      "files": ["next.config.mjs", "tsconfig.json", "./src/**/*"],
+      "output": ["./.next/**/*"]
+    },
+    "dev": {
+      "command": "next dev"
+    },
+    "format": {
+      "command": "biome check --apply ./src",
+      "files": ["biome.json", "./src/**/*"],
+      "output": ["./src/**/*"]
+    },
+    "lint": {
+      "command": "next lint"
+    },
+    "start": {
+      "command": "next start",
+      "dependencies": ["build"]
+    }
   }
 }
